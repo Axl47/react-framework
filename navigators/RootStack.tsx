@@ -50,8 +50,8 @@ const RootStack: FunctionComponent = () => {
 					options={{
 						headerTitle: (props) => (
 							<Greeting
-								mainText="Placeholder Text"
-								subText="Idk what to write"
+								mainText="Recurring"
+								subText="Home Page"
 								{...props}
 							/>
 						),
