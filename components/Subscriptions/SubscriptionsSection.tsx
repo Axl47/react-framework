@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import styled from "styled-components/native";
-import { Ionicons } from "@expo/vector-icons"
 
 import { SubscriptionsSectionProps } from './types';
 import SubscriptionItem from './SubscriptionItem';
@@ -24,19 +23,20 @@ const SubscriptionRow = styled.View`
 `;
 
 const SubscriptionList = styled.FlatList`
+	background-color: #EEEEEE;
+	border-radius: 25px;
 	width: 100%;
 `;
 
 const SubscriptionsSection: FunctionComponent<SubscriptionsSectionProps> = (props) => {
 	return (
 		<SubscriptionsSectionBackground>
-			<SubscriptionRow style={{ marginBottom: 25 }}>
+			<SubscriptionRow style={{ marginBottom: 10 }}>
 				<RegularText textStyles={{ fontSize: 19, color: colors.secondary }}>
-					Subscriptions
+					{props.title}
 				</RegularText>
 				<SmallText textStyles={{ color: colors.secondary }}>
-					Recent
-					<Ionicons name="caret-down" size={13} color={colors.graydark}></Ionicons>
+					{props.subtitle}
 				</SmallText>
 			</SubscriptionRow>
 			<SubscriptionList
@@ -48,7 +48,6 @@ const SubscriptionsSection: FunctionComponent<SubscriptionsSectionProps> = (prop
 				keyExtractor={({ id }: any) => id.toString()}
 				renderItem={({ item }: any) => <SubscriptionItem {...item} />}
 			/>
-
 		</SubscriptionsSectionBackground>
 	);
 };

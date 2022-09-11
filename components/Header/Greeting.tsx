@@ -14,9 +14,7 @@ const StyledView = styled.View`
 
 interface GreetingProps {
 	mainText: string;
-	subText: string;
 	mainTextStyles?: StyleProp<TextStyle>;
-	subTextStyles?: StyleProp<TextStyle>;
 }
 
 const Greeting: FunctionComponent<GreetingProps> = (props) => {
@@ -33,16 +31,6 @@ const Greeting: FunctionComponent<GreetingProps> = (props) => {
 			>
 				{props.mainText}
 			</RegularText>
-			<SmallText
-				textStyles={[
-					{
-						color: colors.graydark,
-					},
-					props.subTextStyles,
-				]}
-			>
-				{props.subText}
-			</SmallText>
 		</StyledView>
 	);
 };

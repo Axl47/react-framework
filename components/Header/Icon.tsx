@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from 'react';
 import {
-	ImageSourcePropType,
 	GestureResponderEvent,
 	StyleProp,
 	ViewStyle,
@@ -8,33 +7,29 @@ import {
 } from 'react-native';
 import styled from "styled-components/native";
 
-import { colors } from '../../components/colors';
+import { Ionicons } from "@expo/vector-icons"
+
+import { colors } from '../colors';
+
 
 const StyledView = styled.TouchableOpacity`
 	flex-direction: column;
-	height: 45px;
-	width: 45px;
+	height: 25px;
+	width: 25px;
 	border-radius: 25px;
 `;
 
-const StyledImage = styled.Image`
-	resize-mode: cover;
-	width: 100%;
-	height: 100%;
-	border-radius: 25px;
-`;
-
-interface ProfileProps {
-	img: ImageSourcePropType;
+interface IconProps {
+	img: any;
 	imgStyle?: StyleProp<ImageStyle>;
 	imgContainerStyle?: StyleProp<ViewStyle>;
 	onPress?: ((event: GestureResponderEvent) => void | undefined);
 }
 
-const Profile: FunctionComponent<ProfileProps> = (props) => {
+const Profile: FunctionComponent<IconProps> = (props) => {
 	return (
 		<StyledView onPress={props.onPress} style={props.imgContainerStyle}>
-			<StyledImage style={props.imgStyle} source={props.img} />
+			<Ionicons name={props.img} size={25} color={colors.white}></Ionicons>
 		</StyledView>
 	);
 };

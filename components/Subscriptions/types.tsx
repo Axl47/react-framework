@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { StyleProp, TextStyle } from "react-native";
+import React from "react";
 
 export interface SubscriptionsProps {
 	id: number;
@@ -15,9 +14,17 @@ export interface SubscriptionsProps {
 
 export interface SubscriptionsSectionProps {
 	data: SubscriptionsProps[];
+	title: string;
+	subtitle: string;
 }
 
 export interface SubscriptionsAviProps {
 	icon: any;
 	background: string;
+}
+
+export interface SubscriptionAddProps {
+	addSubVisible: boolean;
+	setSubVisible: React.Dispatch<React.SetStateAction<boolean>>;
+	addSubscription: Function;
 }

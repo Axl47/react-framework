@@ -4,15 +4,34 @@ import styled from "styled-components/native";
 
 import { colors } from '../components/colors';
 import { Container } from '../components/shared';
+
+import Icon from '../components/Header/Icon';
 import SubscriptionsSection from '../components/Subscriptions/SubscriptionsSection';
+import SubscriptionAdd from '../components/Subscriptions/SubscriptionAdd';
+
 
 const HomeContainer = styled(Container)`
 	background-color: ${colors.graylight};
+	margin-top: 10px;
 	width: 100%;
 	flex: 1;
 `;
 
-const subscritionData = [
+interface Art {
+	background: string;
+	icon: string;
+}
+
+interface Subscription {
+	id: number;
+	amount: string;
+	date: string;
+	title: string;
+	subtitle: string;
+	art: Art;
+}
+
+const subscritionData: Subscription[] = [
 	{
 		id: 1,
 		amount: "$9.99",
@@ -59,11 +78,48 @@ const subscritionData = [
 	},
 ];
 
-const Home: FunctionComponent = () => {
+const totalAmount = (period: string): number => {
+	let total = 0;
+	subscritionData.map((item) => {
+		if (item.subtitle == period) {
+			total += parseFloat(item.amount.substring(1))
+		}
+	});
+	return total;
+}
+
+const addSubscription = (item: Subscription): void => {
+	// Logic for adding a subscription
+	return;
+}
+
+const Home: FunctionComponent = ({ navigation }: any) => {
+	const yearlyCost = Math.ceil(totalAmount("Monthly") * 12 + totalAmount("Annual"));
+	const [addSubVisible, setSubVisible] = React.useState(false);
+
+	React.useLayoutEffect(() => {
+		navigation.setOptions({
+			headerRight: () => (
+				<Icon
+					img="add-circle-outline"
+					onPress={() => setSubVisible(true)}
+				/>
+			),
+		})
+	});
+
 	return (
 		<HomeContainer>
 			<StatusBar style="dark" />
-			<SubscriptionsSection data={subscritionData} />
+			<SubscriptionAdd
+				addSubVisible={addSubVisible}
+				setSubVisible={setSubVisible}
+				addSubscription={addSubscription} />
+			<SubscriptionsSection
+				data={subscritionData}
+				title="Subscriptions"
+				subtitle={`$${yearlyCost} per year`}
+			/>
 		</HomeContainer>
 	);
 };

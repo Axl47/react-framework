@@ -15,7 +15,7 @@ const SubscriptionRow = styled.View`
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 `;
 
 const LeftView = styled.View`
@@ -32,8 +32,9 @@ const RightView = styled.View`
 
 const SubscriptionItem: FunctionComponent<SubscriptionsProps> = (props) => {
 	return (
-		<SubscriptionRow>
+		<SubscriptionRow style={{ marginTop: 10 }}>
 			<LeftView>
+				<View style={{ marginLeft: 10 }} />
 				<SubscriptionsAvi
 					background={props.art.background}
 					icon={props.art.icon}
@@ -59,23 +60,25 @@ const SubscriptionItem: FunctionComponent<SubscriptionsProps> = (props) => {
 				</View>
 			</LeftView>
 			<RightView>
-				<RegularText
-					textStyles={{
-						color: colors.secondary,
-						textAlign: 'right',
-						marginBottom: 5,
-					}}
-				>
-					{props.amount}
-				</RegularText>
-				<SmallText
-					textStyles={{
-						color: colors.graydark,
-						textAlign: 'right',
-					}}
-				>
-					{props.date}
-				</SmallText>
+				<View style={{ marginRight: 10 }}>
+					<RegularText
+						textStyles={{
+							color: colors.secondary,
+							textAlign: 'right',
+							marginBottom: 5,
+						}}
+					>
+						{props.amount}
+					</RegularText>
+					<SmallText
+						textStyles={{
+							color: colors.graydark,
+							textAlign: 'right',
+						}}
+					>
+						{props.date}
+					</SmallText>
+				</View>
 			</RightView>
 		</SubscriptionRow>
 	);

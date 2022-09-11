@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 
 import Home from '../screens/Home';
 import { colors } from '../components/colors';
@@ -6,8 +6,7 @@ import { colors } from '../components/colors';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Greeting from '../components/Header/Greeting';
-import Profile from '../components/Header/Profile';
-import Avi from '../assets/avi/avatar.jpeg';
+import Icon from '../components/Header/Icon';
 
 export type RootStackParamList = {
 	Home: undefined;
@@ -21,25 +20,23 @@ const RootStack: FunctionComponent = () => {
 			<Stack.Navigator
 				screenOptions={{
 					headerStyle: {
-						backgroundColor: colors.graylight,
+						backgroundColor: "#BBBBBB",
 						borderBottomWidth: 0,
 						shadowColor: "transparent",
 						shadowOpacity: 0,
 						elevation: 0,
-						height: 120,
+						height: 80,
 					},
 					headerTintColor: colors.secondary,
 					headerRightContainerStyle: {
-						paddingRight: 25,
+						paddingRight: 20,
 					},
 					headerLeftContainerStyle: {
-						paddingLeft: 10,
+						paddingLeft: 20,
 					},
-					headerRight: () => (
-						<Profile
-							img={Avi}
-							imgContainerStyle={{ backgroundColor: colors.tertiary }}
-						/>
+					headerTitleAlign: 'center',
+					headerLeft: () => (
+						<Icon img="settings" />
 					),
 				}}
 				initialRouteName="Home"
@@ -47,16 +44,14 @@ const RootStack: FunctionComponent = () => {
 				<Stack.Screen
 					name="Home"
 					component={Home}
-					options={{
+					options={({ navigation, route }) => ({
 						headerTitle: (props) => (
 							<Greeting
 								mainText="Recurring"
-								subText="Home Page"
 								{...props}
 							/>
 						),
-						headerLeft: () => <></>,
-					}}
+					})}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>
